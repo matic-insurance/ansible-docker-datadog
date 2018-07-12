@@ -1,0 +1,9 @@
+---
+datadog_agent_image: datadog/agent
+datadog_agent_image_tag: latest
+data_agent_container_name: dd-agent
+
+matic_dd_api_key:
+
+container_memory_limit: null
+agent_restart_policy: unless-stopped

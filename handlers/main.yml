@@ -1,0 +1,7 @@
+---
+- name: restart datadog agent
+  docker_container:
+    image: '{{ datadog_agent_image }}:{{ datadog_agent_image_tag }}'
+    name: '{{ data_agent_container_name }}'
+    restart: true
+    state: started

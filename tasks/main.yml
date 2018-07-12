@@ -1,0 +1,19 @@
+---
+- name: Pull Datadog agent image
+  docker_image:
+    name: '{{ datadog_agent_image }}'
+    tag: '{{ datadog_agent_image_tag }}'
+
+- name: Run Datadog agent container
+  docker_container:
+    env:
+      DD_API_KEY: '{{ matic_dd_api_key }}'
+    image: '{{ datadog_agent_image }}:{{ datadog_agent_image_tag }}'
+    memory: '{{ container_memory_limit | default(omit) }}'
+    name: '{{ data_agent_container_name }}'
+    restart_policy: '{{ agent_restart_policy }}'
+    state: started
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /proc/:/host/proc:ro
+    - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
