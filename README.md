@@ -1,22 +1,29 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Role simplifies running of the Datadog monitoring agent in a docker container which comes pre-configured for monitoring container services on a docker host.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- Docker version 17.06+
+- Ubuntu 14.04+
+- Datadog account with valid API key
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- datadog_agent_image: determines the specific container image to pull from the Datadog account on Docker Hub
+- datadog_agent_image_tag: the specific version of the agent container to pull/run
+- data_agent_container_name: the name to give the container on each host
+- matic_dd_api_key: the api key for the Matic Datadog account 
+- container_memory_limit: the memory limit (if any) to set on the container to preserve host resources
+- agent_restart_policy: the policy to restart the container if stopped for any reason
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+[]
 
 Example Playbook
 ----------------
@@ -25,14 +32,16 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - role: matic-insurance.docker-datadog
+           matic_dd_api_key: e24b7fa891aa70bde374efa09
+           data_agent_container_name: datadog-docker-agent
 
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Matic is a communication platform that connects lenders and borrowers originating a new home loan. A borrower now knows where they are in the loan process and what they need to do to complete the loan.
