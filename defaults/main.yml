@@ -4,6 +4,8 @@ datadog_agent_image_tag: latest
 data_agent_container_name: dd-agent
 
 matic_dd_api_key: API_INTEGRATION_KEY
+collect_logs: true
+collect_logs_all: true
 
 container_memory_limit: null
 agent_restart_policy: unless-stopped

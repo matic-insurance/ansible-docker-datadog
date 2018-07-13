@@ -9,6 +9,7 @@ Requirements
 - Docker version 17.06+
 - Ubuntu 14.04+
 - Datadog account with valid API key
+- Datadog agent container version 6+
 
 Role Variables
 --------------
@@ -19,6 +20,8 @@ Role Variables
 - matic_dd_api_key: the api key for the Matic Datadog account 
 - container_memory_limit: the memory limit (if any) to set on the container to preserve host resources
 - agent_restart_policy: the policy to restart the container if stopped for any reason
+- collect_logs: boolean to determine if Datadog agent should collect and ship container logs
+- collect_logs_all: boolean to determine if all container logs will be shipped or specific logs will be targeted via mounted config file
 
 Dependencies
 ------------
@@ -35,6 +38,8 @@ Including an example of how to use your role (for instance, with variables passe
          - role: matic-insurance.docker-datadog
            matic_dd_api_key: e24b7fa891aa70bde374efa09
            data_agent_container_name: datadog-docker-agent
+           collect_logs: true
+           collect_logs_all: true
 
 License
 -------
