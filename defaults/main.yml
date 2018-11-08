@@ -2,10 +2,15 @@
 datadog_agent_image: datadog/agent
 datadog_agent_image_tag: latest
 data_agent_container_name: dd-agent
-
+data_agent_hostname: localhost
+data_agent_non_local_traffic: false
+data_agent_expose_ports: false
+data_agent_ports_mapping: 8125:8125/udp
 matic_dd_api_key: API_INTEGRATION_KEY
-collect_logs: true
-collect_logs_all: true
+collect_logs: false
+collect_logs_all: false
+collect_traces: false
+collect_process: false
 
 container_memory_limit: null
 agent_restart_policy: unless-stopped

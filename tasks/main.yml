@@ -14,11 +14,15 @@
   docker_container:
     env:
       DD_API_KEY: '{{ matic_dd_api_key }}'
-      DD_LOGS_ENABLED: '{{ collect_logs }}'
-      DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: '{{ collect_logs_all }}'
+      DD_LOGS_ENABLED: '{{ collect_logs | lower }}'
+      DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: '{{ collect_logs_all | lower }}'
+      DD_HOSTNAME: '{{ data_agent_hostname }}'
+      DD_APM_ENABLED: '{{ collect_traces | lower }}'
+      DD_DOGSTATSD_NON_LOCAL_TRAFFIC: '{{ data_agent_non_local_traffic | lower }}'
     image: '{{ datadog_agent_image }}:{{ datadog_agent_image_tag }}'
     memory: '{{ container_memory_limit | default(omit) }}'
     name: '{{ data_agent_container_name }}'
+    ports: '{{ data_agent_ports_mapping }}'
     restart_policy: '{{ agent_restart_policy }}'
     state: started
     volumes:
