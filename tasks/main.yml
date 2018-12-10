@@ -19,6 +19,7 @@
       DD_HOSTNAME: '{{ data_agent_hostname }}'
       DD_APM_ENABLED: '{{ collect_traces | lower }}'
       DD_DOGSTATSD_NON_LOCAL_TRAFFIC: '{{ data_agent_non_local_traffic | lower }}'
+      DD_PROCESS_AGENT_ENABLED: '{{ collect_process | lower }}'
     image: '{{ datadog_agent_image }}:{{ datadog_agent_image_tag }}'
     memory: '{{ container_memory_limit | default(omit) }}'
     name: '{{ data_agent_container_name }}'
@@ -26,7 +27,7 @@
     restart_policy: '{{ agent_restart_policy }}'
     state: started
     volumes:
-    - /var/run/docker.sock:/var/run/docker.sock:ro
+    - /var/run/docker.sock:/var/run/docker.sock:ro:q
     - /proc/:/host/proc:ro
     - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
     - /opt/datadog-agent/logs:/opt/datadog-agent/run:rw
