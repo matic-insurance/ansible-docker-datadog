@@ -27,7 +27,7 @@
     restart_policy: '{{ agent_restart_policy }}'
     state: started
     volumes:
-    - /var/run/docker.sock:/var/run/docker.sock:ro:q
+    - /var/run/docker.sock:/var/run/docker.sock:ro
     - /proc/:/host/proc:ro
     - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
     - /opt/datadog-agent/logs:/opt/datadog-agent/run:rw
